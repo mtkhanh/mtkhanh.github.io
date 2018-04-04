@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://mtkhanh.github.io/posts/watson-api-personality-insights-analysis-twitter/</loc>
+    <lastmod>2018-04-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://mtkhanh.github.io/about/</loc>
   </url>
   
@@ -13,6 +18,13 @@
   
   <url>
     <loc>https://mtkhanh.github.io/</loc>
+    <lastmod>2018-04-04T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://mtkhanh.github.io/posts/</loc>
+    <lastmod>2018-04-04T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

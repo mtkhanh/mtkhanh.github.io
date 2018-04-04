@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Khánh&#39;s blog</title>
-    <link>https://mtkhanh.github.io/</link>
-    <description>Recent content on Khánh&#39;s blog</description>
+    <title>Posts on Khánh&#39;s blog</title>
+    <link>https://mtkhanh.github.io/posts/</link>
+    <description>Recent content in Posts on Khánh&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 04 Apr 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://mtkhanh.github.io/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://mtkhanh.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -19,18 +19,6 @@
       <guid>https://mtkhanh.github.io/posts/watson-api-personality-insights-analysis-twitter/</guid>
       <description>Watson API (được tạo ra bởi IBM) cung cấp rất nhiều ứng dụng open source về AI. Ứng dụng đầu tiên mình áp dụng là sử dụng Watson API trong việc phân tích hành vi tính cách cá nhân với tài khoản Twitter.
 Yêu cầu  Python modules : watson_developer_cloud, python-Twitter Accounts : Twitter (https://twitter.com/) , Watson (https://www.ibm.com/watson/)  import sys import operator import requests import json import twitter from watson_developer_cloud import PersonalityInsightsV2 as PersonalityInsights  Lấy data từ Twitter Đầu tiên chúng ta cần tạo một app trên https://apps.</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://mtkhanh.github.io/about/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://mtkhanh.github.io/about/</guid>
-      <description>About Me Mai Trung Khanh, a 23 year old embedded software developer with experience in embedded software development, robotics and deep learning. &amp;ldquo;No development is self-rejection&amp;rdquo; is the way I motivate myself day by day. I always want to be more active, creative and responsive.
-Education  Phan Dinh Phung highschool
- Vaasa University of Applied Science | 2013 - 2018
- Major : Embedded system Bachelor Thesis : Human gestures imitation using whole body of Nao robot and classification - Convolutional Neural Networks, Forward and Inverse Kinematics.</description>
     </item>
     
   </channel>

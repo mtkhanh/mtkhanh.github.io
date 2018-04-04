@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Mai Trung Khánh">
+    
+    <meta name="keywords" content="blog,developer,personal">
+
+    <base href="https://mtkhanh.github.io/">
+    <title>
+  Watson API &#43; Twitter · Khánh&#39;s blog
+</title>
+
+    <link rel="canonical" href="https://mtkhanh.github.io/posts/watson-api-personality-insights-analysis-twitter/">
+
+    <link  rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Mono:400,700">
+    <link rel="stylesheet" href="//cdn.rawgit.com/necolas/normalize.css/master/normalize.css">
+    <link rel="stylesheet" href="https://mtkhanh.github.io/css/style.min.css">
+
+    <link rel="icon" type="image/png" href="https://mtkhanh.github.io/images/icon.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://mtkhanh.github.io/images/icon.png" sizes="16x16">
+
+    
+
+    <meta name="generator" content="Hugo 0.37.1" />
+  </head>
+
+  <body>
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://mtkhanh.github.io/">
+      <img src="/images/icon.png" width="3%" height="3%" align="middle">
+    </a>
+    <ul class="navigation-list float-right">
+      
+      <li class="navigation-item">
+        <a class="navigation-link" href="/posts/">blog</a>
+      </li>
+      
+      <li class="navigation-item">
+        <a class="navigation-link" href="/about/">about</a>
+      </li>
+      
+    </ul>
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container post">
+  <article>
+    <header>
+      <h1 class="title">Watson API &#43; Twitter</h1>
+      <h2 class="date">April 4, 2018</h2>
+    </header>
+
+    
+
+<p>Watson API (được tạo ra bởi IBM) cung cấp rất nhiều ứng dụng open source về AI. Ứng dụng đầu tiên mình áp dụng là sử dụng Watson API trong việc phân tích hành vi tính cách cá nhân với tài khoản Twitter.</p>
+
+<h3 id="yêu-cầu">Yêu cầu</h3>
+
+<ul>
+<li>Python modules : watson_developer_cloud, python-Twitter</li>
+<li>Accounts : Twitter (<a href="https://twitter.com/">https://twitter.com/</a>) , Watson (<a href="https://www.ibm.com/watson/">https://www.ibm.com/watson/</a>)</li>
+</ul>
+
+<pre><code class="language-python">import sys
+ import operator
+ import requests
+ import json
+ import twitter
+ from watson_developer_cloud import PersonalityInsightsV2 as PersonalityInsights
+</code></pre>
+
+<h3 id="lấy-data-từ-twitter">Lấy data từ Twitter</h3>
+
+<p>Đầu tiên chúng ta cần tạo một app trên <a href="https://apps.twitter.com">https://apps.twitter.com</a> để kết nối với Twitter API.</p>
+
+<ul>
+<li>Create New app</li>
+<li>Applicaton Details</li>
+<li>Keys and Access Tokens</li>
+</ul>
+
+<p>Sau khi tạo app mới chúng ta sẽ nhận được những Key qua trọng : Consumer Key (API Key), Consumer Secret (API Secret), Access Token, Access Token Secret và tương tác với Twitter API bằng cách sử dụng :</p>
+
+<pre><code class="language-python">twitter_api = twitter.Api(consumer_key=twitter_consumer_key,
+                consumer_secret=twitter_consumer_secret,
+                access_token_key=twitter_access_token,
+                access_token_secret=twitter_access_secret)
+</code></pre>
+
+<p>Và nhận data từ Twitter với hàm ( trong đó handle là tên tài khoản Twitter @abcxyz) :</p>
+
+<p>statuses = twitter_api.GetUserTimeline(screen_name=handle, count=200, include_rts=False)</p>
+
+<p>Data nhận được sẽ là 200 dòng Tweet được user đăng lên và sau đó chúng là sẽ dùng Watson để xử lý và phân tích dữ liệu.</p>
+
+<h3 id="kết-nối-với-personality-insights-watson-api">Kết nối với Personality Insights Watson API:</h3>
+
+<p>Bước đầu tiên chúng ta cần tạo một Personality Insights cloud trên IBM Bluemix (<a href="https://console.bluemix.net">https://console.bluemix.net</a>) và search Personality Insights trong mục Catalog. Với Lite Plan chúng ta có thể thực hiên 1000 API calls trong vòng 1 tháng.</p>
+
+<p>Sau khi tạo xong cloud, vào phần Service credentials để lấy username và passwword (hoặc là tạo một credential key mới) dưới dạng JSON. Việc kết nối với cloud và sử lý dữ liệt lấy được từ Twitter được thực hiện bởi hàm :</p>
+
+<pre><code class="language-python">personality_insights = PersonalityInsights(username=pi_username,password=pi_password).profile(text)
+</code></pre>
+
+<h3 id="kết-quả">Kết quả</h3>
+
+<p>Lấy ví dụ là ông em Cristiano Ronaldo vừa mới phá game ngày hôm qua với tài khoản Twitter @Cristiano :</p>
+
+<pre><code>Key : @Cristiano
+---------------------------------
+Cautiousness :  0.771371152145
+Achievement striving :  0.775418367214
+Self-efficacy :  0.522446081333
+Self-consciousness :  0.150786273949
+Anxiety :  0.127858753335
+Self-discipline :  0.864863120505
+Orderliness :  0.69373822474
+Altruism :  0.565760683833
+Depression :  0.192716193731
+Excitement-seeking :  0.329157461718
+Trust :  0.887643842148
+Morality :  0.611562803898
+Assertiveness :  0.695661772481
+Activity level :  0.950911778701
+Cooperation :  0.691565436762
+Anger :  0.0934788374772
+Gregariousness :  0.730196543711
+Cheerfulness :  0.759129603553
+Vulnerability :  0.349808548396
+Friendliness :  0.744543896191
+Dutifulness :  0.782013267844
+Artistic interests :  0.274841775922
+Adventurousness :  0.716281852824
+Immoderation :  0.0347281644977
+Liberalism :  0.102643053272
+Emotionality :  0.307247744264
+Imagination :  0.12407608902
+Intellect :  0.112373148822
+Modesty :  0.778393026563
+Sympathy :  0.0651969688694
+</code></pre>
+
+<p>Code có thể clone từ : <a href="https://github.com/mtkhanh/AI">https://github.com/mtkhanh/AI</a> (watson.py)</p>
+
+<h4 id="kết-luận">Kết luận</h4>
+
+<p>Watson API cho chúng ta một thư viện hết sức đồ sộ và áp dụng được trong nhiều lĩnh vực từ khoa học đến y học, kinh tế ,.. và mình sẽ cố gắng tìm hiểu kĩ hơn và nghiêm túc hơn về nó.</p>
+
+  </article>
+</section>
+
+
+      </div>
+
+      <footer class="footer">
+  <section class="container">
+    "Hard work beats talent when talent doesn't work hard." - Kevin Durant
+  </section>
+</footer>
+
+    </main>
+
+    
+
+  </body>
+
+</html>
