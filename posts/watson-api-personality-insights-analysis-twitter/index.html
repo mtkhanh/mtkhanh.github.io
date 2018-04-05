@@ -61,12 +61,12 @@
 
     
 
-<p>Watson API (được tạo ra bởi IBM) cung cấp rất nhiều ứng dụng open source về AI. Ứng dụng đầu tiên mình áp dụng là sử dụng Watson API trong việc phân tích hành vi tính cách cá nhân với tài khoản Twitter.</p>
+<p>Watson API (created by IBM) provided a huge amount of open source service for Artificial Intelligence. My very first application is to make the interaction between Watson and Twitter.</p>
 
-<h3 id="yêu-cầu">Yêu cầu</h3>
+<h3 id="requirements">Requirements</h3>
 
 <ul>
-<li>Python modules : watson_developer_cloud, python-Twitter</li>
+<li>Python modules: watson_developer_cloud, python-Twitter</li>
 <li>Accounts : Twitter (<a href="https://twitter.com/">https://twitter.com/</a>) , Watson (<a href="https://www.ibm.com/watson/">https://www.ibm.com/watson/</a>)</li>
 </ul>
 
@@ -78,17 +78,17 @@
  from watson_developer_cloud import PersonalityInsightsV2 as PersonalityInsights
 </code></pre>
 
-<h3 id="lấy-data-từ-twitter">Lấy data từ Twitter</h3>
+<h3 id="get-data-from-twitter">Get data from Twitter</h3>
 
-<p>Đầu tiên chúng ta cần tạo một app trên <a href="https://apps.twitter.com">https://apps.twitter.com</a> để kết nối với Twitter API.</p>
+<p>First, we need to create a new app in <a href="https://apps.twitter.com">https://apps.twitter.com</a> to connect with Twitter API. Following these steps:</p>
 
 <ul>
 <li>Create New app</li>
-<li>Applicaton Details</li>
+<li>Application Details</li>
 <li>Keys and Access Tokens</li>
 </ul>
 
-<p>Sau khi tạo app mới chúng ta sẽ nhận được những Key qua trọng : Consumer Key (API Key), Consumer Secret (API Secret), Access Token, Access Token Secret và tương tác với Twitter API bằng cách sử dụng :</p>
+<p>We can get the important keys after creating new app : Consumer Key (API Key), Consumer Secret (API Secret), Access Token, Access Token Secret and by using it we can login credentials using function:</p>
 
 <pre><code class="language-python">twitter_api = twitter.Api(consumer_key=twitter_consumer_key,
                 consumer_secret=twitter_consumer_secret,
@@ -96,24 +96,24 @@
                 access_token_secret=twitter_access_secret)
 </code></pre>
 
-<p>Và nhận data từ Twitter với hàm ( trong đó handle là tên tài khoản Twitter @abcxyz) :</p>
+<p>And get the data from one Twitter account (Twitter user account = handle) :</p>
 
 <p>statuses = twitter_api.GetUserTimeline(screen_name=handle, count=200, include_rts=False)</p>
 
-<p>Data nhận được sẽ là 200 dòng Tweet được user đăng lên và sau đó chúng là sẽ dùng Watson để xử lý và phân tích dữ liệu.</p>
+<p>The data we got is 200 desired Tweets from given user in form of a Python list and now we should pass it to Watson and analyze.</p>
 
-<h3 id="kết-nối-với-personality-insights-watson-api">Kết nối với Personality Insights Watson API:</h3>
+<h3 id="connect-with-watson-api">Connect with Watson API:</h3>
 
-<p>Bước đầu tiên chúng ta cần tạo một Personality Insights cloud trên IBM Bluemix (<a href="https://console.bluemix.net">https://console.bluemix.net</a>) và search Personality Insights trong mục Catalog. Với Lite Plan chúng ta có thể thực hiên 1000 API calls trong vòng 1 tháng.</p>
+<p>We need to create a new cloud service on IBM Bluemix (<a href="https://console.bluemix.net">https://console.bluemix.net</a>) and search for Personality Insights in Catalog. IBM provides 3 options for API calls, with Lite Plan we can have a free 1000 calls/month.</p>
 
-<p>Sau khi tạo xong cloud, vào phần Service credentials để lấy username và passwword (hoặc là tạo một credential key mới) dưới dạng JSON. Việc kết nối với cloud và sử lý dữ liệt lấy được từ Twitter được thực hiện bởi hàm :</p>
+<p>After logging into our own cloud, go to Service credentials to get username and passwords (or create a new credential) in form of JSON. By using given username and password, we can pass the data from Twitter API to Watson by calling the function :</p>
 
 <pre><code class="language-python">personality_insights = PersonalityInsights(username=pi_username,password=pi_password).profile(text)
 </code></pre>
 
-<h3 id="kết-quả">Kết quả</h3>
+<h3 id="result">Result</h3>
 
-<p>Lấy ví dụ là ông em Cristiano Ronaldo vừa mới phá game ngày hôm qua với tài khoản Twitter @Cristiano :</p>
+<p>The first result is the personality analysis of @Cristiano with 30 different suspects:</p>
 
 <pre><code>Key : @Cristiano
 ---------------------------------
@@ -149,11 +149,18 @@ Modesty :  0.778393026563
 Sympathy :  0.0651969688694
 </code></pre>
 
-<p>Code có thể clone từ : <a href="https://github.com/mtkhanh/AI">https://github.com/mtkhanh/AI</a> (watson.py)</p>
+<p>We can also compare multiple users together:</p>
 
-<h4 id="kết-luận">Kết luận</h4>
+<pre><code>Key : @Cristiano -&gt; @KingJames -&gt; Comparison
+---------------------------------
+Achievement striving :  0.775418367214 -&gt; 0.780010253606 -&gt; 0.00459188639196
+Self-efficacy :  0.522446081333 -&gt; 0.543879209076 -&gt; 0.0214331277432
+Self-discipline :  0.864863120505 -&gt; 0.84122938867 -&gt; 0.0236337318349
+Cautiousness :  0.771371152145 -&gt; 0.803131620549 -&gt; 0.0317604684041
+Self-consciousness :  0.150786273949 -&gt; 0.117947969837 -&gt; 0.0328383041116
+</code></pre>
 
-<p>Watson API cho chúng ta một thư viện hết sức đồ sộ và áp dụng được trong nhiều lĩnh vực từ khoa học đến y học, kinh tế ,.. và mình sẽ cố gắng tìm hiểu kĩ hơn và nghiêm túc hơn về nó.</p>
+<p>Code are available from : <a href="https://github.com/mtkhanh/AI">https://github.com/mtkhanh/AI</a> (watson.py)</p>
 
   </article>
 </section>

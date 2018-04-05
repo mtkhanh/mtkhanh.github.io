@@ -17,8 +17,8 @@
       <pubDate>Wed, 04 Apr 2018 00:00:00 +0000</pubDate>
       
       <guid>https://mtkhanh.github.io/posts/watson-api-personality-insights-analysis-twitter/</guid>
-      <description>Watson API (được tạo ra bởi IBM) cung cấp rất nhiều ứng dụng open source về AI. Ứng dụng đầu tiên mình áp dụng là sử dụng Watson API trong việc phân tích hành vi tính cách cá nhân với tài khoản Twitter.
-Yêu cầu  Python modules : watson_developer_cloud, python-Twitter Accounts : Twitter (https://twitter.com/) , Watson (https://www.ibm.com/watson/)  import sys import operator import requests import json import twitter from watson_developer_cloud import PersonalityInsightsV2 as PersonalityInsights  Lấy data từ Twitter Đầu tiên chúng ta cần tạo một app trên https://apps.</description>
+      <description>Watson API (created by IBM) provided a huge amount of open source service for Artificial Intelligence. My very first application is to make the interaction between Watson and Twitter.
+Requirements  Python modules: watson_developer_cloud, python-Twitter Accounts : Twitter (https://twitter.com/) , Watson (https://www.ibm.com/watson/)  import sys import operator import requests import json import twitter from watson_developer_cloud import PersonalityInsightsV2 as PersonalityInsights  Get data from Twitter First, we need to create a new app in https://apps.</description>
     </item>
     
   </channel>
