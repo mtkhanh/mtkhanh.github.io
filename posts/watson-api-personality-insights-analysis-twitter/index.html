@@ -91,7 +91,7 @@
 
 <p>First, we need to create a new app in <a href="https://apps.twitter.com">https://apps.twitter.com</a> to connect with Twitter API. Following these steps:</p>
 
-<p><img src="/images/E_card.png" alt="Twitter app" class="center"/></p>
+<p><img src="https://mtkhanh.github.io/posts/watson-api-personality-insights-analysis-twitter/images/E_card.png" alt="Twitter app" class="center"/></p>
 
 <ul>
 <li>Create New app</li>
@@ -99,7 +99,7 @@
 <li>Keys and Access Tokens</li>
 </ul>
 
-<p><img src="/images/key_token.png" alt="key token" class="center"/></p>
+<p><img src="https://mtkhanh.github.io/posts/watson-api-personality-insights-analysis-twitter/images/key_token.PNG" alt="key token" class="center"/></p>
 
 <p>We can get the important keys after creating new app : Consumer Key (API Key), Consumer Secret (API Secret), Access Token, Access Token Secret and by using it we can login credentials using function:</p>
 
@@ -119,11 +119,11 @@
 
 <p>We need to create a new cloud service on IBM Bluemix (<a href="https://console.bluemix.net">https://console.bluemix.net</a>) and search for Personality Insights in Catalog. IBM provides 3 options for API calls, with Lite Plan we can have a free 1000 calls/month.</p>
 
-<p><img src="/images/personal.png" alt="personal" class="center"/></p>
+<p><img src="https://mtkhanh.github.io/posts/watson-api-personality-insights-analysis-twitter/images/watson_api.PNG" alt="personal" class="center"/></p>
 
 <p>After logging into our own cloud, go to Service credentials to get username and passwords (or create a new credential) in form of JSON. By using given username and password, we can pass the data from Twitter API to Watson by calling the function :</p>
 
-<p><img src="/images/credentials.png" alt="creden" class="center"/></p>
+<p><img src="https://mtkhanh.github.io/posts/watson-api-personality-insights-analysis-twitter/images/credentials.PNG" alt="creden" class="center"/></p>
 
 <pre><code class="language-python">personality_insights = PersonalityInsights(username=pi_username,password=pi_password).profile(text)
 </code></pre>
@@ -177,7 +177,7 @@ Cautiousness :  0.771371152145 -&gt; 0.803131620549 -&gt; 0.0317604684041
 Self-consciousness :  0.150786273949 -&gt; 0.117947969837 -&gt; 0.0328383041116
 </code></pre>
 
-<p>Code are available from : <a href="https://github.com/mtkhanh/AI">https://github.com/mtkhanh/AI</a> (watson.py)</p>
+<p>Code are available from : <a href="https://github.com/mtkhanh/AI/blob/master/watson.py">https://github.com/mtkhanh/AI/blob/master/watson.py</a> (watson.py)</p>
 
   </article>
 </section>
