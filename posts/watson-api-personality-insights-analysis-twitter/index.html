@@ -58,12 +58,19 @@
       <h1 class="title">Watson API &#43; Twitter</h1>
       <h2 class="date">April 4, 2018</h2>
     </header>
+    <style media="screen">
+    .center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    </style>
 
 
 
 <p>Watson API (created by IBM) provided a huge amount of open source service for Artificial Intelligence. My very first application is to make the interaction between Watson and Twitter.</p>
 
-<p><img src="https://pbs.twimg.com/media/DZ28u27WsAAqCgu.jpg" alt="Watson IBM" /></p>
+<p><img src="https://pbs.twimg.com/media/DZ28u27WsAAqCgu.jpg" alt="Watson IBM" class="center"/></p>
 
 <h3 id="requirements">Requirements</h3>
 
@@ -84,7 +91,7 @@
 
 <p>First, we need to create a new app in <a href="https://apps.twitter.com">https://apps.twitter.com</a> to connect with Twitter API. Following these steps:</p>
 
-<p><img src="images/E_card.png" alt="Twitter app" /></p>
+<p><img src="/images/E_card.png" alt="Twitter app" class="center"/></p>
 
 <ul>
 <li>Create New app</li>
@@ -92,7 +99,7 @@
 <li>Keys and Access Tokens</li>
 </ul>
 
-<p><img src="images/key_token.png" alt="key token" /></p>
+<p><img src="/images/key_token.png" alt="key token" class="center"/></p>
 
 <p>We can get the important keys after creating new app : Consumer Key (API Key), Consumer Secret (API Secret), Access Token, Access Token Secret and by using it we can login credentials using function:</p>
 
@@ -112,11 +119,11 @@
 
 <p>We need to create a new cloud service on IBM Bluemix (<a href="https://console.bluemix.net">https://console.bluemix.net</a>) and search for Personality Insights in Catalog. IBM provides 3 options for API calls, with Lite Plan we can have a free 1000 calls/month.</p>
 
-<p><img src="images/personal.png" alt="personal" /></p>
+<p><img src="/images/personal.png" alt="personal" class="center"/></p>
 
 <p>After logging into our own cloud, go to Service credentials to get username and passwords (or create a new credential) in form of JSON. By using given username and password, we can pass the data from Twitter API to Watson by calling the function :</p>
 
-<p><img src="images/credentials.png" alt="creden" /></p>
+<p><img src="/images/credentials.png" alt="creden" class="center"/></p>
 
 <pre><code class="language-python">personality_insights = PersonalityInsights(username=pi_username,password=pi_password).profile(text)
 </code></pre>
